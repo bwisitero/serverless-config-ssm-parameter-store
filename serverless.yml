@@ -37,18 +37,18 @@ provider:
       Action: 'ssm:GetParameters'
       Resource: 
         - 'arn:aws:ssm:#{AWS::Region}:#{AWS::AccountId}:parameter/${self:provider.environment.TEST_PARAMETER}'
-        - 'arn:aws:ssm:#{AWS::Region}:#{AWS::AccountId}:parameter/${self:provider.environment.CONNECTION_STRING}'
+        - 'arn:aws:ssm:#{AWS::Region}:#{AWS::AccountId}:parameter${self:provider.environment.CONNECTION_STRING}' # removed "/" because key starts with "/"
     - Effect: 'Allow'
       Action: 'kms:Decrypt'    
       Resource: 
         # change this to your KMS key
-        - 'arn:aws:kms:#{AWS::Region}:#{AWS::AccountId}:key/xxxxxxxxx-xxxxxx-xxxxxxx-xxxxxxx'
+        - 'arn:aws:kms:#{AWS::Region}:#{AWS::AccountId}:key/XXXXXXXX' 
 
 functions:
-  hello:
-    handler: handlers/handler.hello
+  get-configuration:
+    handler: handlers/get-configuration.handler
     events:
       - http:
-          path: hello
+          path: config
           method: get
           cors: true

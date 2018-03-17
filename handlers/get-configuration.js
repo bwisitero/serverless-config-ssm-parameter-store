@@ -6,7 +6,7 @@ const config1 = configClient.loadConfigs(
   [ process.env.TEST_PARAMETER, process.env.CONNECTION_STRING ], 
   30000); // cache config values for 30s
 
-module.exports.hello = co.wrap(function* (event, context, callback) {
+module.exports.handler = co.wrap(function* (event, context, callback) {
 
   console.log('stage ', process.env.STAGE)
   console.log('testparameter ', process.env.TEST_PARAMETER)

@@ -1,0 +1,24 @@
+serverless create --template aws-nodejs --path my-service
+
+deploy
+serverless deploy --stage dev --region us-west-1
+
+invoke locally
+serverless invoke local --function hello --log
+
+invoke remotely
+serverless invoke --stage dev --region us-west-1 --log --function hello
+
+invoke with data
+serverless invoke local --function functionName --data "hello world"
+
+invoke function with data passing
+serverless invoke local --function functionName --path data.json
+
+
+To run locally:
+serverless offline start
+
+
+sample serverless yml
+https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/
